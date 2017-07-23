@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
-	'url': 'mongodb://localhost/scotch-tut'
+	'url': process.env.DATABASE_URL
 }

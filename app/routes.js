@@ -10,14 +10,25 @@ module.exports = function(app, passport) {
 		res.render('login.ejs', { message: req.flash('loginMessage')});
 	});
 
-	// app.post('/login', [HANDLING WITH PASSPORT] );
+	app.post('/login', passport.authenticate('local-login', {
+		successRedirect: '/profile',
+		failureRedirect: '/login',
+		failureFlash: true
+	}));
 
 	// SIGNUP PAGE ///////////////////////////////////////
 	app.get('/signup', (req, res) => {
 		res.render('signup.ejs', { message: req.flash('signupMessage')});
 	});
 
-	// app.post('/signup', [HANDLING WITH PASSPORT] );
+	// example of custom handling of authentication
+	// https://stackoverflow.com/questions/15711127/express-passport-node-js-error-handling
+
+	app.post('/signup', passport.authenticate('local-signup', {
+		successRedirect: '/profile',
+		failureRedirect: '/signup',
+		failureFlash: true
+	}));
 
 	// PROFILE PAGE //////////////////////////////////////
 	// MUST BE LOGGED IN /////////////////////////////////
