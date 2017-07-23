@@ -37,7 +37,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-// require('./app/routes')(app, passport);
+require('./app/routes')(app, passport);
 
 app.listen(port);
 console.log(`your application is running on port: ${port}...\nYou better go and catch it.`);
